@@ -1,14 +1,43 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/lib/auth-context';
+import { LandingPage } from '@/components/landing/LandingPage';
 
 const Index = () => {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+  const { user, profile, loading } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!loading && user && profile) {
+      // Redirect based on role
+      switch (profile.role) {
+        case 'admin':
+          navigate('/admin');
+          break;
+        case 'client':
+          navigate('/client');
+          break;
+        case 'epc':
+          navigate('/epc');
+          break;
+        case 'financier':
+          navigate('/financier');
+          break;
+        default:
+          break;
+      }
+    }
+  }, [user, profile, loading, navigate]);
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <div className="spinner border-accent" />
       </div>
-    </div>
-  );
+    );
+  }
+
+  return <LandingPage />;
 };
 
 export default Index;
