@@ -1,31 +1,46 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, Building2, Wallet, Users, Shield, TrendingUp, CheckCircle2 } from 'lucide-react';
+import {
+  ArrowRight,
+  Zap,
+  Building2,
+  Wallet,
+  Users,
+  Shield,
+  TrendingUp,
+  CheckCircle2,
+  Sparkles,
+  BarChart3,
+  Globe2,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/ui/Logo';
 import { RoleSelectionModal } from './RoleSelectionModal';
 import { Link } from 'react-router-dom';
 
+const heroImage =
+  'https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=1600&q=80';
+
 const features = [
   {
     icon: Shield,
-    title: 'Verified Partners',
-    description: 'All EPCs and financiers are thoroughly vetted for quality and reliability.',
+    title: 'Verified EPCs & Financiers',
+    description: 'End-to-end KYC + QA so you only work with vetted, insured partners.',
   },
   {
     icon: TrendingUp,
-    title: 'Competitive Bidding',
-    description: 'Get multiple bids from qualified contractors and compare proposals easily.',
+    title: 'Smart Project Scoring',
+    description: 'AI-assisted sizing, risk scoring, and ROI views for every request.',
   },
   {
     icon: Wallet,
-    title: 'Flexible Financing',
-    description: 'Access lease, loan, and PPA options from trusted financial institutions.',
+    title: 'Flexible Capital',
+    description: 'Leasing, loans, PPAs, and green funds matched to each project profile.',
   },
   {
-    icon: Zap,
-    title: 'Smart Matching',
-    description: 'Our platform matches your needs with the right partners automatically.',
+    icon: Sparkles,
+    title: 'AI Design Packs',
+    description: 'Auto-generated concept renders, BoMs, and proposal-ready docs in minutes.',
   },
 ];
 
@@ -33,27 +48,66 @@ const stats = [
   { value: '500+', label: 'Projects Completed' },
   { value: '50MW+', label: 'Installed Capacity' },
   { value: '98%', label: 'Client Satisfaction' },
-  { value: '30%', label: 'Average Savings' },
+  { value: '30%', label: 'Avg. Cost Savings' },
 ];
+
+const steps = [
+  {
+    title: 'Tell us about the site',
+    detail: 'Upload roof/ground details, bills, and goals. AI sizes the system instantly.',
+  },
+  {
+    title: 'Get verified bids',
+    detail: 'Matched EPCs submit standardized proposals with comparable pricing.',
+  },
+  {
+    title: 'Secure financing',
+    detail: 'We line up capital partners with the best-fit instruments for your project.',
+  },
+  {
+    title: 'Install, monitor, save',
+    detail: 'Track milestones, QA, and live performance from one command center.',
+  },
+];
+
+const testimonials = [
+  {
+    name: 'Aisha, Facility Manager',
+    quote:
+      'Enverst compressed our procurement cycle from months to days, with clean, comparable proposals and financing ready.',
+  },
+  {
+    name: 'David, EPC Director',
+    quote:
+      'The lead quality and standardized packs are excellent. We spend more time installing and less time chasing scope.',
+  },
+  {
+    name: 'Mina, Project Finance',
+    quote:
+      'Their risk scoring and data room made underwriting straightforward. We scaled our solar portfolio faster.',
+  },
+];
+
+const partners = ['Safaritech', 'SunGrid Africa', 'GreenCap', 'VoltEdge', 'Skyline EPC'];
 
 export function LandingPage() {
   const [showRoleModal, setShowRoleModal] = useState(false);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 glass-light">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <Logo variant="dark" size="md" />
           <div className="hidden md:flex items-center gap-8">
             <a href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground animated-underline">
-              Features
+              Platform
             </a>
-            <a href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground animated-underline">
-              How It Works
+            <a href="#workflow" className="text-sm font-medium text-muted-foreground hover:text-foreground animated-underline">
+              Workflow
             </a>
-            <a href="#about" className="text-sm font-medium text-muted-foreground hover:text-foreground animated-underline">
-              About
+            <a href="#proof" className="text-sm font-medium text-muted-foreground hover:text-foreground animated-underline">
+              Proof
             </a>
           </div>
           <div className="flex items-center gap-4">
@@ -70,50 +124,54 @@ export function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center hero-gradient overflow-hidden">
-        {/* Background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 right-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-20 left-20 w-64 h-64 bg-accent/5 rounded-full blur-2xl animate-float animation-delay-200" />
-          <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-accent-gold/5 rounded-full blur-2xl animate-float animation-delay-400" />
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-primary text-primary-foreground">
+        <div
+          className="absolute inset-0 opacity-60"
+          style={{
+            backgroundImage: `linear-gradient(135deg, rgba(16,24,40,0.85) 0%, rgba(16,24,40,0.6) 35%, rgba(32,185,129,0.55) 100%), url(${heroImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        <div className="absolute inset-0">
+          <div className="absolute top-10 right-10 w-72 h-72 bg-accent/25 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-10 w-80 h-80 bg-accent/15 rounded-full blur-3xl" />
         </div>
-
-        <div className="container mx-auto px-6 relative z-10 pt-24">
-          <div className="max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
+        <div className="container mx-auto px-6 relative z-10 pt-28 pb-20 grid lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-7 space-y-8">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/15 text-accent font-semibold text-sm"
             >
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
-                <Zap size={16} className="fill-current" />
-                Kenya's Premier Solar Energy Marketplace
-              </span>
-            </motion.div>
+              <Zap size={16} className="fill-current" />
+              Kenya&apos;s Premier Solar Energy Marketplace
+            </motion.span>
 
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 26 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-5xl md:text-7xl font-display font-bold hero-text-gradient mb-6 leading-tight"
+              transition={{ duration: 0.7, delay: 0.05 }}
+              className="text-4xl md:text-6xl font-display font-bold leading-tight"
             >
-              Power Your Future with Solar Energy
+              Design, finance, and deploy solar projects with AI-speed precision.
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl text-primary-foreground/80 mb-8 max-w-2xl"
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl"
             >
-              Connect with verified EPCs and access flexible financing options. 
-              From residential to commercial projects, we make going solar simple and transparent.
+              Enverst connects clients, EPCs, and financiers with verified partners, smart project scoring, and
+              proposal-ready AI render packs. Faster bids, clearer risk, better outcomes.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               className="flex flex-col sm:flex-row gap-4"
             >
               <Button
@@ -121,48 +179,109 @@ export function LandingPage() {
                 onClick={() => setShowRoleModal(true)}
                 className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-6 text-lg group"
               >
-                Start Your Solar Journey
+                Start your project
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 px-8 py-6 text-lg"
-              >
-                Learn More
-              </Button>
+              <Link to="/auth">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 px-8 py-6 text-lg"
+                >
+                  Sign in to console
+                </Button>
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="grid grid-cols-2 md:grid-cols-4 gap-4"
+            >
+              {stats.map((stat, index) => (
+                <div key={index} className="glass rounded-xl p-4 border border-white/10">
+                  <div className="text-3xl font-display font-bold">{stat.value}</div>
+                  <div className="text-sm text-primary-foreground/70">{stat.label}</div>
+                </div>
+              ))}
             </motion.div>
           </div>
 
-          {/* Stats */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20"
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="lg:col-span-5"
           >
-            {stats.map((stat, index) => (
-              <div key={index} className="glass rounded-xl p-6 text-center">
-                <div className="text-3xl md:text-4xl font-display font-bold text-primary-foreground mb-2">
-                  {stat.value}
+            <div className="bg-card/90 backdrop-blur-xl rounded-2xl shadow-strong border border-white/10 p-6 space-y-4 text-foreground">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-accent/15 flex items-center justify-center text-accent">
+                  <BarChart3 size={22} />
                 </div>
-                <div className="text-sm text-primary-foreground/60">{stat.label}</div>
+                <div>
+                  <p className="text-sm text-muted-foreground">AI project intelligence</p>
+                  <p className="font-semibold text-lg">Instant sizing + ROI views</p>
+                </div>
               </div>
-            ))}
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                <div className="p-4 rounded-xl bg-accent/12 border border-accent/25">
+                  <div className="flex items-center gap-2 mb-1 text-accent">
+                    <Sparkles size={16} /> <span className="text-foreground/90">Design</span>
+                  </div>
+                  <p className="font-semibold text-foreground">Autogenerated render &amp; BoM</p>
+                </div>
+                <div className="p-4 rounded-xl bg-accent-gold/12 border border-accent-gold/30">
+                  <div className="flex items-center gap-2 mb-1 text-accent-gold">
+                    <Wallet size={16} /> <span className="text-foreground/90">Finance</span>
+                  </div>
+                  <p className="font-semibold text-foreground">Matched lenders &amp; PPAs</p>
+                </div>
+                <div className="p-4 rounded-xl bg-accent-blue/12 border border-accent-blue/30">
+                  <div className="flex items-center gap-2 mb-1 text-accent-blue">
+                    <Shield size={16} /> <span className="text-foreground/90">Delivery</span>
+                  </div>
+                  <p className="font-semibold text-foreground">Milestone QA &amp; telemetry</p>
+                </div>
+                <div className="p-4 rounded-xl bg-secondary/70 border border-border">
+                  <div className="flex items-center gap-2 mb-1 text-primary">
+                    <Globe2 size={16} /> <span className="text-foreground/90">Impact</span>
+                  </div>
+                  <p className="font-semibold text-foreground">Verified kWh + CO₂ savings</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-foreground/85">
+                <Globe2 size={16} />
+                Serving East Africa with global-grade standards.
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Role Selection Cards */}
-      <section className="py-24 bg-background" id="how-it-works">
+      {/* Partners */}
+      <section className="bg-secondary/50 py-10">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-foreground mb-4">
-              Choose Your Path
-            </h2>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <p className="text-sm font-medium text-muted-foreground">Trusted by renewable leaders</p>
+            <div className="flex flex-wrap gap-6 text-sm text-foreground/80">
+              {partners.map((p) => (
+                <span key={p} className="px-3 py-2 rounded-full bg-card shadow-sm border border-border">
+                  {p}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Role Selection Cards */}
+      <section className="py-24 bg-background" id="workflow">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-14">
+            <h2 className="text-4xl font-display font-bold text-foreground mb-3">Choose your path</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Whether you're looking to install solar, provide EPC services, or finance projects, 
-              we have the right solution for you.
+              Tailored experiences for clients, EPCs, and financiers—unified by one secure workspace.
             </p>
           </div>
 
@@ -179,12 +298,12 @@ export function LandingPage() {
               <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
                 <Users size={28} className="text-accent group-hover:text-accent-foreground" />
               </div>
-              <h3 className="text-xl font-display font-semibold mb-3">I'm a Client</h3>
+              <h3 className="text-xl font-display font-semibold mb-3">Clients</h3>
               <p className="text-muted-foreground mb-6">
-                Looking to install solar for your home or business? Get competitive bids from verified EPCs and access financing options.
+                Guided scoping, side-by-side proposals, and milestone tracking with quality gates.
               </p>
               <ul className="space-y-2 mb-6">
-                {['Request quotes easily', 'Compare multiple bids', 'Access financing'].map((item, i) => (
+                {['AI-assisted sizing', 'Verified EPC pool', 'Financing-ready packs'].map((item, i) => (
                   <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
                     <CheckCircle2 size={16} className="text-accent" />
                     {item}
@@ -192,7 +311,7 @@ export function LandingPage() {
                 ))}
               </ul>
               <Button variant="ghost" className="group-hover:text-accent">
-                Get Started <ArrowRight size={16} className="ml-2" />
+                Start as client <ArrowRight size={16} className="ml-2" />
               </Button>
             </motion.div>
 
@@ -208,12 +327,12 @@ export function LandingPage() {
               <div className="w-14 h-14 rounded-xl bg-accent-gold/10 flex items-center justify-center mb-6 group-hover:bg-accent-gold transition-colors">
                 <Building2 size={28} className="text-accent-gold group-hover:text-accent-gold-foreground" />
               </div>
-              <h3 className="text-xl font-display font-semibold mb-3">I'm an EPC</h3>
+              <h3 className="text-xl font-display font-semibold mb-3">EPCs</h3>
               <p className="text-muted-foreground mb-6">
-                Expand your business by accessing a marketplace of qualified solar project opportunities.
+                Standardized scopes, prequalified leads, and bid templates that win faster.
               </p>
               <ul className="space-y-2 mb-6">
-                {['Access project leads', 'Submit proposals', 'Grow your business'].map((item, i) => (
+                {['Project briefs ready-to-quote', 'Auto BoM suggestions', 'Progress billing & QA'].map((item, i) => (
                   <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
                     <CheckCircle2 size={16} className="text-accent-gold" />
                     {item}
@@ -237,12 +356,12 @@ export function LandingPage() {
               <div className="w-14 h-14 rounded-xl bg-accent-blue/10 flex items-center justify-center mb-6 group-hover:bg-accent-blue transition-colors">
                 <Wallet size={28} className="text-accent-blue group-hover:text-accent-blue-foreground" />
               </div>
-              <h3 className="text-xl font-display font-semibold mb-3">I'm a Financier</h3>
+              <h3 className="text-xl font-display font-semibold mb-3">Financiers</h3>
               <p className="text-muted-foreground mb-6">
-                Access a pipeline of vetted solar projects and grow your renewable energy portfolio.
+                Risk-scored projects, unified data rooms, and standardized repayment models.
               </p>
               <ul className="space-y-2 mb-6">
-                {['Vetted projects', 'Risk-scored deals', 'Standardized packs'].map((item, i) => (
+                {['Credit-ready packs', 'Performance telemetry', 'Structured PPA + lease flows'].map((item, i) => (
                   <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
                     <CheckCircle2 size={16} className="text-accent-blue" />
                     {item}
@@ -250,41 +369,78 @@ export function LandingPage() {
                 ))}
               </ul>
               <Button variant="ghost" className="group-hover:text-accent-blue">
-                Finance Projects <ArrowRight size={16} className="ml-2" />
+                Finance projects <ArrowRight size={16} className="ml-2" />
               </Button>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* How it works timeline */}
       <section className="py-24 bg-secondary/50" id="features">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-foreground mb-4">
-              Why Choose Enverst?
-            </h2>
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-14 gap-6">
+            <div>
+              <h2 className="text-4xl font-display font-bold text-foreground mb-3">From scope to savings, faster</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl">
+                A guided, data-rich journey for every stakeholder—powered by AI sizing, structured bidding, and
+                financing that fits.
+              </p>
+            </div>
+            <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground" onClick={() => setShowRoleModal(true)}>
+              Launch my project <ArrowRight className="ml-2" />
+            </Button>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {steps.map((step, i) => (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="p-6 rounded-2xl bg-card shadow-card border border-border"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-accent/15 text-accent font-semibold">
+                    {i + 1}
+                  </span>
+                  <h3 className="text-lg font-display font-semibold">{step.title}</h3>
+                </div>
+                <p className="text-muted-foreground">{step.detail}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Proof / Testimonials */}
+      <section className="py-24 bg-background" id="proof">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-14">
+            <h2 className="text-4xl font-display font-bold text-foreground mb-3">Real teams, real outcomes</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We've built the most comprehensive solar marketplace in Kenya, 
-              connecting all stakeholders in the renewable energy ecosystem.
+              Enverst powers faster procurement, cleaner underwriting, and better installation experiences.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((t, i) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
+                key={t.name}
+                initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-card rounded-xl p-6 shadow-card"
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="p-6 rounded-2xl bg-card shadow-card border border-border flex flex-col gap-4"
               >
-                <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                  <feature.icon size={24} className="text-accent" />
+                <div className="flex items-center gap-2 text-accent font-semibold">
+                  <Sparkles size={16} />
+                  <span>Impact Story</span>
                 </div>
-                <h3 className="text-lg font-display font-semibold mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground text-sm">{feature.description}</p>
+                <p className="text-foreground text-base leading-relaxed">“{t.quote}”</p>
+                <p className="text-sm text-muted-foreground">— {t.name}</p>
               </motion.div>
             ))}
           </div>
@@ -292,46 +448,56 @@ export function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-hero" id="about">
+      <section className="py-24 bg-gradient-hero">
         <div className="container mx-auto px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-primary-foreground mb-6">
-              Ready to Go Solar?
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-primary-foreground mb-4">
+              Build the future of energy—together.
             </h2>
             <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-              Join hundreds of satisfied customers who have made the switch to clean, 
-              renewable energy with Enverst.
+              Get AI-assisted design packs, structured bids, and financing alignment in one place.
             </p>
-            <Button
-              size="lg"
-              onClick={() => setShowRoleModal(true)}
-              className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-10 py-6 text-lg"
-            >
-              Get Started Today
-              <ArrowRight className="ml-2" />
-            </Button>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button
+                size="lg"
+                onClick={() => setShowRoleModal(true)}
+                className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-10 py-6 text-lg"
+              >
+                Get started
+                <ArrowRight className="ml-2" />
+              </Button>
+              <Link to="/auth">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 px-8 py-6 text-lg"
+                >
+                  Sign in
+                </Button>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary py-12">
+      <footer className="bg-primary py-12 text-primary-foreground">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <Logo variant="light" size="sm" />
-            <p className="text-primary-foreground/60 text-sm">
+            <p className="text-primary-foreground/70 text-sm">
               © 2024 Enverst. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
-              <a href="#" className="text-primary-foreground/60 hover:text-primary-foreground text-sm">
+              <a href="#" className="text-primary-foreground/70 hover:text-primary-foreground text-sm">
                 Privacy Policy
               </a>
-              <a href="#" className="text-primary-foreground/60 hover:text-primary-foreground text-sm">
+              <a href="#" className="text-primary-foreground/70 hover:text-primary-foreground text-sm">
                 Terms of Service
               </a>
             </div>
