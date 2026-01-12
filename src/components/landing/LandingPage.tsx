@@ -328,6 +328,9 @@ export function LandingPage() {
               © 2024 Enverst. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
+              <Link to="/admin-login" className="text-primary-foreground/40 hover:text-primary-foreground/60 text-xs">
+                Admin
+              </Link>
               <a href="#" className="text-primary-foreground/60 hover:text-primary-foreground text-sm">
                 Privacy Policy
               </a>
