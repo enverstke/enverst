@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/lib/auth-context";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
+import AdminLogin from "./pages/AdminLogin";
 import ClientDashboard from "./pages/client/Dashboard";
 import EPCDashboard from "./pages/epc/Dashboard";
 import FinancierDashboard from "./pages/financier/Dashboard";
@@ -24,6 +25,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/client/*" element={<ClientDashboard />} />
             <Route path="/epc/*" element={<EPCDashboard />} />
             <Route path="/financier/*" element={<FinancierDashboard />} />
