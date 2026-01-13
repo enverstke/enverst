@@ -14,6 +14,7 @@ interface AuthContextType {
     full_name: string | null;
     email: string | null;
     is_profile_complete: boolean;
+    entity_type: 'individual' | 'company' | null;
   } | null;
   loading: boolean;
   signUp: (email: string, password: string, role: UserRole, fullName: string) => Promise<{ error: Error | null }>;
@@ -34,7 +35,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const fetchProfile = async (userId: string) => {
     const { data, error } = await supabase
       .from('profiles')
-      .select('id, role, full_name, email, is_profile_complete')
+      .select('id, role, full_name, email, is_profile_complete, entity_type')
       .eq('user_id', userId)
       .single();
 

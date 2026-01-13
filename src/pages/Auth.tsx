@@ -59,8 +59,8 @@ export default function Auth() {
     if (error) {
       toast.error(error.message);
     } else if (!isLogin) {
-      toast.success('Account created! You can now sign in.');
-      setIsLogin(true);
+      toast.success('Check your email to confirm your account!');
+      navigate('/email-confirmation');
     }
     setLoading(false);
   };
@@ -216,6 +216,16 @@ export default function Auth() {
                 <Button type="submit" className="w-full bg-accent hover:bg-accent/90" disabled={loading}>
                   {loading ? <span className="spinner" /> : isLogin ? 'Sign in' : 'Create account'}
                 </Button>
+
+                {isLogin && (
+                  <button
+                    type="button"
+                    onClick={() => navigate('/forgot-password')}
+                    className="text-sm text-accent hover:underline w-full text-right mt-2"
+                  >
+                    Forgot password?
+                  </button>
+                )}
               </form>
 
               <div className="relative my-6">
