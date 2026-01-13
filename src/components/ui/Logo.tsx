@@ -5,9 +5,10 @@ interface LogoProps {
   variant?: 'light' | 'dark';
   size?: 'sm' | 'md' | 'lg';
   showText?: boolean;
+  className?: string;
 }
 
-export function Logo({ variant = 'dark', size = 'md', showText = true }: LogoProps) {
+export function Logo({ variant = 'dark', size = 'md', showText = true, className }: LogoProps) {
   const sizes = {
     sm: { icon: 20, text: 'text-lg' },
     md: { icon: 28, text: 'text-2xl' },
@@ -26,7 +27,7 @@ export function Logo({ variant = 'dark', size = 'md', showText = true }: LogoPro
   };
 
   return (
-    <Link to="/" className="flex items-center gap-2 group">
+    <Link to="/" className={`flex items-center gap-2 group ${className || ''}`}>
       <div className={`relative ${colors[variant].icon}`}>
         <Zap size={sizes[size].icon} className="fill-current transition-transform group-hover:scale-110" />
         <div className="absolute inset-0 blur-sm opacity-50">
